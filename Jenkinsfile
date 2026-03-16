@@ -1,20 +1,26 @@
 pipeline {
     agent any
-
+    
     tools {
-        maven 'Maven'
+        maven 'MAVEN'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Manasi-Patil165/DevOps-Maven.git'
+                checkout scm
             }
         }
 
         stage('Build') {
             steps {
-                bat 'mvn clean install'
+                bat 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'mvn test'
             }
         }
     }
